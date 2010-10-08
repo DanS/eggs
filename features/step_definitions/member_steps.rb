@@ -13,3 +13,11 @@ Given /^the member "([^\"]*)" has the email address "([^\"]*)"$/ do |name, email
 
   user.save!
 end
+
+
+Given /^I have a balance of "([^\"]*)"$/ do |balance|
+  subscription = @user.member.subscription_for_farm(@farm)
+  transaction = Transaction.new(:amount => balance)
+  subscription.transactions << transaction
+
+end
